@@ -1,0 +1,68 @@
+function [c, H] = polyfitA(x, f, n)
+    m = length(x);
+    Q = ones(m, 1);
+    H = zeros(n+1, n);
+    for k = 1:n
+        q = x .* Q(:, k);
+        for j = 1:k
+            H(j, k) = (Q(:, j)' * q) / m;
+            q = q - H(j, k) * Q(:, j);
+        end
+        H(k+1, k) = norm(q) / sqrt(m);
+        Q = [Q, q / H(k+1, k)];
+    end
+    c = Q \ f;
+end
+
+function y = polyvalA(c, H, s)
+    M = length(s);
+    W = ones(M, 1);
+    n = size(H, 2);
+    for k = 1:n
+        w = s .* W(:, k);
+        for j = 1:k
+            w = w - H(j, k) * W(:, j);
+        end
+        W = [W, w / H(k+1, k)];
+    end
+    y = W * c;
+end
+
+% Generování Čebyševových uzlů
+n = 80;
+j = (0:n)';
+x = cos(j * pi / n);
+
+% Cílová funkce
+f = 1 ./ (1 + 25 * x.^2);
+
+% Interpolace pomocí Arnoldiho metody
+[c,H] = polyfitA(x, f, n);
+
+% Evaluace výsledného polynomu
+s = linspace(-1, 1, 1000)';
+y = polyvalA(c, H, s);
+
+% Výpočet skutečné funkční hodnoty
+y_exact = 1 ./ (1 + 25 * s.^2);
+error = abs(y - y_exact);
+
+% Grafické zobrazení
+figure;
+subplot(2,1,1);
+plot(s, y_exact, 'k', 'LineWidth', 2); hold on;
+plot(s, y, 'b', 'LineWidth', 2);
+title('Interpolace v Chebyshev Points (Arnoldi)');
+xlabel('x');
+ylabel('p(x)');
+legend('Exact function', 'Interpolant');
+grid on;
+
+%Grafické zobrazení chyby
+subplot(2,1,2);
+semilogy(s, error, 'r', 'LineWidth', 2);
+xlim([0 1]);
+title('Interpolation Error (Arnoldi)');
+xlabel('x');
+ylabel('|p(x) - f(x)|');
+grid on;
