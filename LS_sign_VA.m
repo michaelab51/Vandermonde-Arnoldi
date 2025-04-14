@@ -51,10 +51,12 @@ error = abs(y - y_exact);
 % Grafické zobrazení
 figure;
 subplot(2,1,1);
-plot(s, y, 'b', 'LineWidth', 2);
+plot(s, sign(x), 'k', 'LineWidth', 2); hold on;
+plot(s, y, 'g--', 'LineWidth', 2);
 title('Aproximace funkce sign(x)');
 xlabel('x');
 ylabel('p(x)');
+legend('sign(x)', 'Approximace');
 grid on;
 
 %Grafické zobrazení chyby
