@@ -31,11 +31,12 @@ error = abs(y - y_exact);
 % Grafické zobrazení
 figure;
 subplot(2,1,1);
-plot(s, y, 'b', 'LineWidth', 2);
+plot(s, y_exact, 'k', 'LineWidth', 2); hold on;
+plot(s, y, 'g--', 'LineWidth', 2);
 title('Interpolace v Čebyševových bodech');
 xlabel('x');
 ylabel('p(x)');
-
+legend('Funkce', 'Interpolant');
 grid on;
 
 %Grafické zobrazení chyby
