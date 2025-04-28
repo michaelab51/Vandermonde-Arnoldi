@@ -22,7 +22,7 @@ error = abs(y - y_exact);
 figure;
 subplot(2,1,1);
 plot(s, sign(x), 'k', 'LineWidth', 3); hold on;
-plot(s, y, 'g--', 'LineWidth', 3);
+plot(s, y, 'm--', 'LineWidth', 3);
 title('Aproximace funkce sign(x)');
 xlabel('x');
 ylabel('p(x)');
