@@ -74,7 +74,7 @@ error = abs(y - sign_x);
 figure;
 subplot(2,1,1);
 plot(s, sign_x, 'k', 'LineWidth', 2); hold on;
-plot(s, y, 'g--', 'LineWidth', 2);
+plot(s, y, 'm--', 'LineWidth', 2);
 title('Aproximace funkce sign(x) (Lanczos)');
 xlabel('x');
 ylabel('p(x)');
