@@ -73,8 +73,8 @@ error = abs(y - sign_x);
 % Grafické zobrazení
 figure;
 subplot(2,1,1);
-plot(s, sign_x, 'k', 'LineWidth', 2); hold on;
-plot(s, y, 'm--', 'LineWidth', 2);
+plot(s, sign_x, 'k', 'LineWidth', 3); hold on;
+plot(s, y, 'm--', 'LineWidth', 3);
 title('Aproximace funkce sign(x) (Lanczos)');
 xlabel('x');
 ylabel('p(x)');
@@ -82,9 +82,9 @@ legend('sign(x)', 'Approximace');
 grid on;
 
 subplot(2,1,2);
-plot(s, error, 'r', 'LineWidth', 2);
+plot(s, error, 'r', 'LineWidth', 3);
 xlim([0 1]);
 title('Aproximační chyba');
 xlabel('x');
-ylabel('|p(x) - sign(x)|');
+ylabel('||p(x) - sign(x)||_2');
 grid on;
