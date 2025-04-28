@@ -1,14 +1,3 @@
-function c = polyfit(x, f, n)
-    A = x .^ (0:n);
-    c = A \ f;
-end
-
-function y = polyval(c, s)
-    n = length(c) - 1;
-    B = s .^ (0:n);
-    y = B * c;
-end
-
 % Diskretizace domény
 x1 = linspace(-1, -1/3, 500)';
 x2 = linspace(1/3, 1, 500)';
@@ -34,19 +23,49 @@ error = abs(y - y_exact);
 % Grafické zobrazení
 figure;
 subplot(2,1,1);
-plot(s, sign(x), 'k', 'LineWidth', 2); hold on;
-plot(s, y, 'g--', 'LineWidth', 2);
+plot(s, sign(x), 'k', 'LineWidth', 3); hold on;
+plot(s, y, 'g--', 'LineWidth', 3);
 title('Aproximace funkce sign(x)');
 xlabel('x');
 ylabel('p(x)');
-legend('sign(x)', 'Approximace');
+legend('sign(x)', 'Approximace', 'Location', 'southeast');
 grid on;
 
 %Grafické zobrazení chyby
 subplot(2,1,2);
-semilogy(s, error, 'r', 'LineWidth', 2);
+semilogy(s, error, 'r', 'LineWidth', 3);
 xlim([0 1]);
 title('Aproximační chyba');
 xlabel('x');
-ylabel('|p(x) - sign(x)|');
+ylabel('||p(x) - sign(x)||_2');
 grid on;
+
+
+% Rozsah stupňů polynomu
+n_values = 1:200;
+errors = zeros(size(n_values));
+
+for idx = 1:length(n_values)
+    n = n_values(idx);
+
+    % Sestavení Vandermondeovy matice
+    A = x .^ (0:n);
+
+    % Výpočet koeficientů metodou nejmenších čtverců
+    c = A \ f;
+
+    % Výpočet aproximace
+    f_approx = A * c;
+
+    % Výpočet chyby v 2-normě
+    errors(idx) = norm(f - f_approx, 2);
+end
+
+% Vykreslení grafu chyby
+figure;
+semilogy(n_values, errors, 'b', 'LineWidth', 3);
+xlabel('Stupeň polynomu n');
+ylabel('||p(x) - sign(x)||_2');
+title('Závislost aproximační chyby na stupni polynomu');
+grid on;
+d on;
