@@ -29,8 +29,8 @@ function y = polyvalA(d, H, s)
 end
 
 % Generování dat
-n_samples = 50;
-x = linspace(0, 2*pi, n_samples)';
+n = 50;
+x = linspace(0, 2*pi, n)';
 f_true = sin(x) .* cos(3*x);
 noise = 0.1 * randn(size(x));        % náhodný šum
 f_noisy = f_true + noise;            % data s šumem
