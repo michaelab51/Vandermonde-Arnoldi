@@ -14,7 +14,7 @@ f = @(x) sin(x) .* cos(3 * x);
 
 % 2. Generování dat
 n = 20;        
-x = linspace(0, 2*pi, 1000)';
+x = linspace(0, 2*pi, n)';
 y_true = f(x);
 noise = 0.1 * randn(size(x));         % Náhodný šum
 y = y_true + noise;                   % Šumová data
@@ -24,7 +24,7 @@ degree = 7;
 p = polyfit(x, y, degree);
 x_dense = linspace(0, 2*pi, 1000)';
 y_fit = polyval(p, x_dense);
-y_true_dense = f(x_dense);            % Skutečná hodnota pro srovnání
+y_true_dense = f(x_dense);            % Skutečná hodnota
 
 % 4. Vyhodnocení výsledku
 rmse = sqrt(mean((polyval(p, x) - y_true).^2));  % RMSE na trénovacích bodech
