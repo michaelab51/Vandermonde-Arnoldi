@@ -1,9 +1,20 @@
-% 1. Definice cílové funkce
+function c = polyfit(x, f, n)
+    A = x .^ (0:n);
+    c = A \ f;
+end
+
+function y = polyval(c, s)
+    n = length(c) - 1;
+    B = s .^ (0:n);
+    y = B * c;
+end
+
+% Cílová funkce: sin(x) * cos(3x)
 f = @(x) sin(x) .* cos(3 * x);
 
 % 2. Generování dat
 n = 20;        
-x = linspace(0, 2*pi, n)';
+x = linspace(0, 2*pi, 1000)';
 y_true = f(x);
 noise = 0.1 * randn(size(x));         % Náhodný šum
 y = y_true + noise;                   % Šumová data
