@@ -2,17 +2,17 @@
 f = @(x) sin(x) .* cos(3 * x);
 
 % 2. Generování dat
-n = 20;                                % Počet vzorkovacích bodů
-x = linspace(0, 2*pi, n)';             % Rovnoměrně rozložené body
-y_true = f(x);                         % Hodnoty bez šumu
-noise = 0.1 * randn(size(x));         % Náhodný šum (normalizovaný)
-y = y_true + noise;                   % Šumová data (měřená)
+n = 20;        
+x = linspace(0, 2*pi, n)';
+y_true = f(x);
+noise = 0.1 * randn(size(x));         % Náhodný šum
+y = y_true + noise;                   % Šumová data
 
 % 3. Aproximace pomocí polynomu
-degree = 7;                            % Zvolit stupeň polynomu
-p = polyfit(x, y, degree);            % Koeficienty polynomu
-x_dense = linspace(0, 2*pi, 1000)';   % Hustší síť pro hladkou křivku
-y_fit = polyval(p, x_dense);          % Aproximovaná křivka
+degree = 7; 
+p = polyfit(x, y, degree);
+x_dense = linspace(0, 2*pi, 1000)';
+y_fit = polyval(p, x_dense);
 y_true_dense = f(x_dense);            % Skutečná hodnota pro srovnání
 
 % 4. Vyhodnocení výsledku
