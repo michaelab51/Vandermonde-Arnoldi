@@ -31,18 +31,18 @@ end
 % Generování dat
 n_samples = 50;
 x = linspace(0, 2*pi, n_samples)';
-f_true = sin(x) .* cos(3*x);         % přesná funkce
+f_true = sin(x) .* cos(3*x);
 noise = 0.1 * randn(size(x));        % náhodný šum
 f_noisy = f_true + noise;            % data s šumem
 
 % Aproximace pomocí polynomu
-degree = 10;                         % zkus např. 3, 10, 20, 40 pro under/overfitting
+degree = 10;
 [d, H] = polyfitA(x, f_noisy, degree);
 
-% Evaluace polynomu na hustší mřížce
+% Evaluace polynomu
 s = linspace(0, 2*pi, 1000)';
 y_fit = polyvalA(d, H, s);
-y_exact = sin(s) .* cos(3*s);        % přesná funkce na hustší mřížce
+y_exact = sin(s) .* cos(3*s);
 
 % Výpočet RMSE
 rmse = sqrt(mean((polyvalA(d, H, x) - f_true).^2));
@@ -57,7 +57,7 @@ title(['Aproximace funkce sin(x)cos(3x), n = ', num2str(degree), ', RMSE = ', nu
 xlabel('x'); ylabel('y');
 grid on;
 
-% Volitelně: porovnání chyb pro různé stupně
+% Porovnání chyb pro různé stupně - dávat?
 n_values = 1:40;
 errors = zeros(size(n_values));
 for idx = 1:length(n_values)
