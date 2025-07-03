@@ -23,20 +23,21 @@ figure;
 subplot(2,1,1);
 plot(s, sign(x), 'k', 'LineWidth', 3); hold on;
 plot(s, y, 'm--', 'LineWidth', 3);
-title('Aproximace funkce sign(x)');
-xlabel('x');
-ylabel('p(x)');
-legend('sign(x)', 'Approximace');
+title('Aproximace funkce sign(x)', 'FontSize', 16);
+xlabel('x', 'FontSize', 14);
+ylabel('p(x)', 'FontSize', 14);
+legend('sign(x)', 'Approximace', 'Location', 'southeast', 'FontSize', 12);
 grid on;
+set(gca, 'FontSize', 12);
 
-%Grafické zobrazení chyby
 subplot(2,1,2);
 semilogy(s, error, 'r', 'LineWidth', 3);
-xlim([0 1]);
-title('Aproximační chyba');
-xlabel('x');
-ylabel('||p(x) - sign(x)||_2');
+xlim([-1 1]);
+title('Aproximační chyba', 'FontSize', 16);
+xlabel('x', 'FontSize', 14);
+ylabel('||p(x) - sign(x)||_2', 'FontSize', 14);
 grid on;
+set(gca, 'FontSize', 12);
 
 n_values = 1:200;
 errors = zeros(size(n_values));
@@ -45,7 +46,6 @@ for idx = 1:length(n_values)
     n = n_values(idx);
     [d, H] = polyfitA(x, f, n);
     
-    % Rekonstrukce Q pomocí stejné rekurence (alternativně lze i Q uložit)
     m = length(x);
     Q = ones(m,1);
     for k = 1:n
@@ -61,10 +61,11 @@ for idx = 1:length(n_values)
     errors(idx) = norm(f - f_approx, 2);
 end
 
-% Vykreslení chyby
 figure;
 semilogy(n_values, errors, 'b', 'LineWidth', 3);
-xlabel('Stupeň polynomu n');
-ylabel('||p(x)-sign(x)||_2');
-title('Závislost aproximační chyby na stupni polynomu');
+xlabel('Stupeň polynomu n', 'FontSize', 14);
+ylabel('||p(x)-sign(x)||_2', 'FontSize', 14);
+title('Závislost aproximační chyby na stupni polynomu', 'FontSize', 16);
 grid on;
+set(gca, 'FontSize', 12);
+
