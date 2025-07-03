@@ -52,7 +52,6 @@ ylabel('||p(x) - sign(x)||_2', 'FontSize', 14);
 grid on;
 set(gca, 'FontSize', 12);
 
-print('graf1_aproximace_chyba', '-depsc', '-r300');
 
 %Závislost chyby na n
 n_values = 1:200;
@@ -74,4 +73,3 @@ title('Závislost aproximační chyby na stupni polynomu', 'FontSize', 16);
 grid on;
 set(gca, 'FontSize', 12);
 
-print('graf2_chyba_vs_n', '-depsc', '-r300');
