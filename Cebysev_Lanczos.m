@@ -7,11 +7,11 @@ x = cos(j * pi / n);
 f = 1 ./ (1 + 25 * x.^2);
 
 % Interpolace pomocí Lanczosova algoritmu
-[c, T, m] = polyfitA(x, f, n);
+[c, T, m] = polyfitL(x, f, n);
 
 % Evaluace výsledného polynomu
 s = linspace(-1, 1, 1000)';
-y = polyvalA(c, T, s, m);
+y = polyvalL(c, T, s, m);
 
 % Výpočet skutečné funkční hodnoty
 y_exact = 1 ./ (1 + 25 * s.^2);
