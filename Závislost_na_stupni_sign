@@ -1,0 +1,36 @@
+% Diskretizace domény
+x1 = linspace(-1, -1/3, 500)';
+x2 = linspace(1/3, 1, 500)';
+x = [x1; x2];
+
+% Cílová funkce
+f = sign(x);
+
+% Rozsah stupňů polynomu
+n_values = 1:200;
+errors_vander = zeros(size(n_values));
+errors_ortho = zeros(size(n_values));
+
+% Smyčka přes stupně polynomů
+for idx = 1:length(n_values)
+    n = n_values(idx);
+
+    c = polyfit(x, f, n);
+    f_approx_vander = polyval(c, x);
+    errors_vander(idx) = norm(f - f_approx_vander, 2);
+
+    [d, H] = polyfitA(x, f, n);
+    f_approx_ortho = polyvalA(d, H, x);
+    errors_ortho(idx) = norm(f - f_approx_ortho, 2);
+end
+
+% Vykreslení
+figure;
+semilogy(n_values, errors_vander, 'r-', 'LineWidth', 3); hold on;
+semilogy(n_values, errors_ortho, 'b--', 'LineWidth', 3);
+xlabel('Stupeň polynomu n', 'FontSize', 14);
+ylabel('||p(x)-sign(x)||_2', 'FontSize', 14);
+title('Závislost aproximační chyby na stupni polynomu', 'FontSize', 16);
+legend('Vandermondeho matice', 'V-A metoda', 'Location', 'southwest', 'FontSize', 12);
+grid on;
+set(gca, 'FontSize', 12);
