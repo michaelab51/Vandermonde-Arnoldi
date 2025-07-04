@@ -1,0 +1,59 @@
+% Data
+n_interp = 80;
+j = (0:n_interp)';
+x = cos(j * pi / n_interp);
+
+% Cílová funkce
+f = 1 ./ (1 + 25 * x.^2);
+
+% Evaluace
+s = linspace(-1, 1, 1000)';
+y_exact = 1 ./ (1 + 25 * s.^2);
+
+c_classic = polyfit(x, f, n_interp);
+y_classic = polyval(c_classic, s);
+error_classic = abs(y_classic - y_exact);
+
+[c_ortho, H] = polyfitA(x, f, n_interp);
+y_ortho = polyvalA(c_ortho, H, s);
+error_ortho = abs(y_ortho - y_exact);
+
+
+% Chyba vs stupeň polynomu
+n_values = 1:200;
+errors_classic = zeros(size(n_values));
+errors_ortho = zeros(size(n_values));
+
+for idx = 1:length(n_values)
+    n = n_values(idx);
+    
+    c = polyfit(x, f, n);
+    f_approx_classic = polyval(c, x);
+    errors_classic(idx) = norm(f - f_approx_classic, 2);
+
+    [d, H] = polyfitA(x, f, n);
+
+    % Rekonstrukce báze
+    m = length(x);
+    Q = ones(m, 1);
+    for k = 1:n
+        q = x .* Q(:,k);
+        for j = 1:k
+            q = q - H(j,k) * Q(:,j);
+        end
+        q = q / H(k+1,k);
+        Q = [Q q];
+    end
+    f_approx_ortho = Q * d;
+    errors_ortho(idx) = norm(f - f_approx_ortho, 2);
+end
+
+figure;
+semilogy(n_values, errors_classic, 'r--', 'LineWidth', 2); hold on;
+semilogy(n_values, errors_ortho, 'b-.', 'LineWidth', 2);
+xlabel('Stupeň polynomu n', 'FontSize', 14);
+ylabel('||p(x)-f(x)||_2', 'FontSize', 14);
+title('Závislost aproximační chyby na stupni polynomu', 'FontSize', 16);
+legend('Klasická metoda', 'Ortogonální metoda', 'FontSize', 12);
+grid on;
+set(gca, 'FontSize', 12);
