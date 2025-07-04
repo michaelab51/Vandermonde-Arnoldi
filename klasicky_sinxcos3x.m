@@ -1,11 +1,11 @@
 % Diskretizace domény
-x = linspace(-pi, pi, 1000)';  % Husté body pro přesnou aproximaci
+x = linspace(-pi, pi, 1000)'; 
 
 % Cílová funkce: sin(x) * cos(3x)
 f = sin(x) .* cos(3 * x);
 
 % Stupeň polynomu
-n = 20;
+n = 30;
 
 % Least-squares fit
 c = polyfit(x, f, n);
@@ -17,7 +17,6 @@ y = polyval(c, s);
 % Výpočet chyby
 y_exact = sin(s) .* cos(3 * s);
 error = abs(y - y_exact);
-
 % Grafické zobrazení
 figure;
 subplot(2,1,1);
