@@ -1,13 +1,13 @@
 % Generování dat
-x = linspace(0, 2*pi, 1000)';
-f = sin(x) .* cos(3*x); % cílová funkce
-n = 20; % stupeň polynomu
+x = linspace(-pi, pi, 1000)';
+f = sin(x) .* cos(3*x);  % cílová funkce
+n = 30;                  % stupeň polynomu
 
 % Aproximace
 [d, H] = polyfitA(x, f, n);
 
 % Vyhodnocení
-s = linspace(0, 2*pi, 1000)';
+s = linspace(-pi, pi, 1000)';
 y = polyvalA(d, H, s);
 y_exact = sin(s) .* cos(3*s);
 error = abs(y - y_exact);
@@ -17,17 +17,21 @@ figure;
 subplot(2,1,1);
 plot(s, y_exact, 'k', 'LineWidth', 3); hold on;
 plot(s, y, 'm--', 'LineWidth', 3);
-title('Aproximace funkce sin(x)cos(3x)');
-xlabel('x'); ylabel('p(x)');
-legend('Přesná funkce', 'Aproximace');
+title('Aproximace funkce sin(x)cos(3x)', 'FontSize', 16);
+xlabel('x', 'FontSize', 14);
+ylabel('p(x)', 'FontSize', 14);
+legend('Přesná funkce', 'Aproximace', 'FontSize', 12);
 grid on;
+set(gca, 'FontSize', 12);
 
-% Graf chyby
 subplot(2,1,2);
 semilogy(s, error, 'r', 'LineWidth', 3);
-title('Aproximační chyba');
-xlabel('x'); ylabel('|p(x) - f(x)|');
+xlim([-1 1]);
+title('Aproximační chyba', 'FontSize', 16);
+xlabel('x', 'FontSize', 14);
+ylabel('||p(x) - f(x)||_2', 'FontSize', 14);
 grid on;
+set(gca, 'FontSize', 12);
 
 % Závislost chyby na stupni n
 n_values = 1:40;
