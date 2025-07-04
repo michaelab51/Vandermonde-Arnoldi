@@ -1,14 +1,3 @@
-function c = polyfit(x, f, n)
-    A = x .^ (0:n);
-    c = A \ f;
-end
-
-function y = polyval(c, s)
-    n = length(c) - 1;
-    B = s .^ (0:n);
-    y = B * c;
-end
-
 % Diskretizace domény
 x1 = linspace(-1, -1/3, 500)';
 x2 = linspace(1/3, 1, 500)';
