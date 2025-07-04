@@ -21,21 +21,23 @@ error = abs(y - y_exact);
 % Grafické zobrazení
 figure;
 subplot(2,1,1);
-plot(s, y_exact, 'k', 'LineWidth', 2); hold on;
-plot(s, y, 'm--', 'LineWidth', 2);
-title('Aproximace funkce sin(x) * cos(3x)');
-xlabel('x');
-ylabel('p(x)');
-legend('f(x)', 'Approximace', 'Location', 'best');
+plot(s, y_exact, 'k', 'LineWidth', 3); hold on;
+plot(s, y, 'm--', 'LineWidth', 3);
+title('Aproximace funkce sin(x)cos(3x)', 'FontSize', 16);
+xlabel('x', 'FontSize', 14);
+ylabel('p(x)', 'FontSize', 14);
+legend('f(x)', 'Approximace', 'Location', 'best', 'FontSize', 12);
 grid on;
+set(gca, 'FontSize', 12);
 
-% Grafické zobrazení chyby
 subplot(2,1,2);
-semilogy(s, error, 'r', 'LineWidth', 2);
-title('Aproximační chyba');
-xlabel('x');
-ylabel('||p(x) - f(x)||');
+semilogy(s, error, 'r', 'LineWidth', 3);
+xlim([-1 1]);
+title('Aproximační chyba', 'FontSize', 16);
+xlabel('x', 'FontSize', 14);
+ylabel('||p(x) - f(x)||_2', 'FontSize', 14);
 grid on;
+set(gca, 'FontSize', 12);
 
 % Závislost chyby na stupni polynomu
 n_values = 1:80;
@@ -51,8 +53,9 @@ end
 
 % Vykreslení chyby v závislosti na stupni
 figure;
-semilogy(n_values, errors, 'b', 'LineWidth', 2);
-xlabel('Stupeň polynomu n');
-ylabel('||p(x) - f(x)||_2');
-title('Závislost aproximační chyby na stupni polynomu');
+semilogy(n_values, errors, 'b', 'LineWidth', 3);
+xlabel('Stupeň polynomu n', 'FontSize', 14);
+ylabel('||p(x) - f(x)||_2', 'FontSize', 14);
+title('Závislost aproximační chyby na stupni polynomu', 'FontSize', 16);
 grid on;
+set(gca, 'FontSize', 12);
