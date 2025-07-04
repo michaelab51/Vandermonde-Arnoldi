@@ -8,11 +8,11 @@ x = [x1; x2];
 f = sign(x);
 
 % Aproximace pomocí Lanczosova algoritmu
-[c, T] = polyfitA(x, f, n);
+[c, T] = polyfitL(x, f, n);
 
 % Evaluace výsledného polynomu
 s = linspace(-1, 1, 1000)';
-y = polyvalA(c, T, s, m);
+y = polyvalL(c, T, s, m);
 
 % Výpočet skutečné hodnoty funkce
 sign_x = sign(s);
