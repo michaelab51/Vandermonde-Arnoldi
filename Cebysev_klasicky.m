@@ -21,21 +21,22 @@ error = abs(y - y_exact);
 figure;
 subplot(2,1,1);
 plot(s, y_exact, 'k', 'LineWidth', 3); hold on;
-plot(s, y, 'm--', 'LineWidth', 3);
-title('Interpolace v Čebyševových bodech');
-xlabel('x');
-ylabel('p(x)');
-legend('Funkce', 'Interpolant');
+plot(s, y, 'g--', 'LineWidth', 3);
+title('Interpolace v Čebyševových bodech', 'FontSize', 16);
+xlabel('x', 'FontSize', 14);
+ylabel('p(x)', 'FontSize', 14);
+legend('Funkce', 'Aproximace', 'FontSize', 12);
 grid on;
+set(gca, 'FontSize', 12);
 
-%Grafické zobrazení chyby
 subplot(2,1,2);
 semilogy(s, error, 'r', 'LineWidth', 3);
-xlim([0 1]);
-title('Interpolační chyba');
-xlabel('x');
-ylabel('||p(x) - f(x)||_2');
+xlim([-1 1]);
+title('Interpolační chyba', 'FontSize', 16);
+xlabel('x', 'FontSize', 14);
+ylabel('||p(x) - f(x)||_2', 'FontSize', 14);
 grid on;
+set(gca, 'FontSize', 12);
 
 % Rozsah stupňů polynomu
 n_values = 1:200;
@@ -60,7 +61,8 @@ end
 % Vykreslení grafu chyby
 figure;
 semilogy(n_values, errors, 'b', 'LineWidth', 3);
-xlabel('Stupeň polynomu n');
-ylabel('||p(x) - f(x)||_2');
-title('Závislost aproximační chyby na stupni polynomu');
+xlabel('Stupeň polynomu n', 'FontSize', 14);
+ylabel('||p(x) - f(x)||_2', 'FontSize', 14);
+title('Závislost aproximační chyby na stupni polynomu', 'FontSize', 16);
 grid on;
+set(gca, 'FontSize', 12);
