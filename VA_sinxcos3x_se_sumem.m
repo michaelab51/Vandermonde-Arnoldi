@@ -1,3 +1,5 @@
+addpath('Funkce');
+
 % Generování dat
 n = 100;
 x = linspace(-pi, pi, n)';
