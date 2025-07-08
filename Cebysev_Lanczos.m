@@ -1,3 +1,5 @@
+addpath('Funkce');
+
 % Generování Čebyševových uzlů
 n = 80;
 j = (0:n)';
