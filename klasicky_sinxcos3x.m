@@ -1,3 +1,5 @@
+addpath('Funkce');
+
 % Diskretizace domény
 x = linspace(-pi, pi, 1000)'; 
 
