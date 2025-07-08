@@ -1,3 +1,5 @@
+addpath('Funkce');
+
 % Generování dat
 x = linspace(-pi, pi, 1000)';
 f = sin(x) .* cos(3*x);  % cílová funkce
