@@ -1,3 +1,5 @@
+addpath('Funkce');
+
 % Cílová funkce: sin(x) * cos(3x)
 f = @(x) sin(x) .* cos(3 * x);
 
