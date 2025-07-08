@@ -1,3 +1,5 @@
+addpath('Funkce');
+
 % Data
 n_interp = 80;
 j = (0:n_interp)';
