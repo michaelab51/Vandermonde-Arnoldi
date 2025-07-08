@@ -1,3 +1,5 @@
+addpath('Funkce');
+
 % Diskretizace domény
 x1 = linspace(-1, -1/3, 500)';
 x2 = linspace(1/3, 1, 500)';
