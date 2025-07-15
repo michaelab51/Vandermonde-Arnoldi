@@ -41,6 +41,6 @@ semilogy(s, error, 'r', 'LineWidth', 3);
 xlim([-1 1]);
 title('Aproximační chyba', 'FontSize', 16);
 xlabel('x', 'FontSize', 14);
-ylabel('|p(x) - sign(x)|', 'FontSize', 14);
+ylabel('|p(x) - f(x)|', 'FontSize', 14);
 grid on;
 set(gca, 'FontSize', 12);
