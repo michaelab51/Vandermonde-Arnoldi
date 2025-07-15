@@ -56,6 +56,6 @@ semilogy(n_values, errors_ortho, 'b-.', 'LineWidth', 2);
 xlabel('Stupeň polynomu n', 'FontSize', 14);
 ylabel('||p(x)-f(x)||_2', 'FontSize', 14);
 title('Závislost aproximační chyby na stupni polynomu', 'FontSize', 16);
-legend('Klasická metoda', 'Ortogonální metoda', 'FontSize', 12);
+legend('polyfit', 'polyfitA','Location', 'southwest', 'FontSize', 12);
 grid on;
 set(gca, 'FontSize', 12);
