@@ -9,7 +9,7 @@ x = cos(j * pi / n);
 f = 1 ./ (1 + 25 * x.^2);
 
 % Interpolace pomocí Lanczosova algoritmu
-[c, T, m] = polyfitL(x, f, n);
+[c, T, m, V] = polyfitL(x, f, n);
 
 % Evaluace výsledného polynomu
 s = linspace(-1, 1, 1000)';
