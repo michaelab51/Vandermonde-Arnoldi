@@ -1,4 +1,4 @@
-function [c, T, m] = polyfitL(x, f, n)
+function [c, T, m, V] = polyfitL(x, f, n)
     m = length(x);
     V = zeros(m, n+1);
     T = zeros(n+1, n+1);
