@@ -10,7 +10,11 @@ x = [x1; x2];
 f = sign(x);
 
 % Aproximace pomocí Lanczosova algoritmu
-[c, T] = polyfitL(x, f, n);
+[c, T, m, V] = polyfitL(x, f, n);
+
+%výpočet ztráty ortogonality
+loss_ort = norm(eye(size(V,2)) - V' * V, 'fro');
+fprintf('Ztráta ortogonality: %.3e\n', loss_ort);
 
 % Evaluace výsledného polynomu
 s = linspace(-1, 1, 1000)';
@@ -28,12 +32,12 @@ plot(s, y, 'm--', 'LineWidth', 3);
 title('Aproximace funkce sign(x) (Lanczos)', 'FontSize', 16);
 xlabel('x', 'FontSize', 14);
 ylabel('p(x)', 'FontSize', 14);
-legend('sign(x)', 'Approximace', 'Location', 'southeast', 'FontSize', 12);
+legend('Funkce', 'Approximace', 'Location', 'southeast', 'FontSize', 12);
 grid on;
 set(gca, 'FontSize', 12);
 
 subplot(2,1,2);
-plot(s, error, 'r', 'LineWidth', 3);
+semilogy(s, error, 'r', 'LineWidth', 3);
 xlim([-1 1]);
 title('Aproximační chyba', 'FontSize', 16);
 xlabel('x', 'FontSize', 14);
