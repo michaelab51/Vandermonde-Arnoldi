@@ -19,6 +19,10 @@ y = polyvalL(c, T, s, m);
 y_exact = 1 ./ (1 + 25 * s.^2);
 error = abs(y - y_exact);
 
+%výpočet ztráty ortogonality
+loss_ort = norm(eye(size(V,2)) - V' * V, 'fro');
+fprintf('Ztráta ortogonality: %.3e\n', loss_ort);
+
 % Grafické zobrazení
 figure;
 subplot(2,1,1);
