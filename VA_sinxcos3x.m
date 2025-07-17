@@ -22,16 +22,16 @@ plot(s, y, 'm--', 'LineWidth', 3);
 title('Aproximace funkce sin(x)cos(3x)', 'FontSize', 16);
 xlabel('x', 'FontSize', 14);
 ylabel('p(x)', 'FontSize', 14);
-legend('Přesná funkce', 'Aproximace', 'FontSize', 12);
+legend('Funkce', 'Aproximace', 'FontSize', 12);
 grid on;
 set(gca, 'FontSize', 12);
 
 subplot(2,1,2);
 semilogy(s, error, 'r', 'LineWidth', 3);
 xlim([-1 1]);
-title('Aproximační chyba', 'FontSize', 16);
+title('Vektor chyby', 'FontSize', 16);
 xlabel('x', 'FontSize', 14);
-ylabel('||p(x) - f(x)||_2', 'FontSize', 14);
+ylabel('|p(x) - f(x)|', 'FontSize', 14);
 grid on;
 set(gca, 'FontSize', 12);
 
@@ -62,5 +62,5 @@ figure;
 semilogy(n_values, errors, 'b', 'LineWidth', 3);
 xlabel('Stupeň polynomu n');
 ylabel('||p(x) - f(x)||_2');
-title('Závislost aproximační chyby na stupni polynomu');
+title('Závislost chyby aproximace na stupni polynomu');
 grid on;
