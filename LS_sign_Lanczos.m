@@ -39,7 +39,7 @@ set(gca, 'FontSize', 12);
 subplot(2,1,2);
 semilogy(s, error, 'r', 'LineWidth', 3);
 xlim([-1 1]);
-title('Aproximační chyba', 'FontSize', 16);
+title('Vektor chyby', 'FontSize', 16);
 xlabel('x', 'FontSize', 14);
 ylabel('|p(x) - f(x)|', 'FontSize', 14);
 grid on;
