@@ -40,6 +40,6 @@ semilogy(s, error, 'r', 'LineWidth', 3);
 xlim([-1 1]);
 title('Interpolation Error (Lanczos)', 'FontSize', 16);
 xlabel('x', 'FontSize', 14);
-ylabel('||p(x) - f(x)||_2', 'FontSize', 14);
+ylabel('|p(x) - f(x)|', 'FontSize', 14);
 grid on;
 set(gca, 'FontSize', 12);
