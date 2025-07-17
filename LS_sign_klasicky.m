@@ -30,16 +30,16 @@ plot(s, y, 'm--', 'LineWidth', 3);
 title('Aproximace funkce sign(x)', 'FontSize', 16);
 xlabel('x', 'FontSize', 14);
 ylabel('p(x)', 'FontSize', 14);
-legend('sign(x)', 'Approximace', 'Location', 'southeast', 'FontSize', 12);
+legend('Funkce', 'Aproximace', 'Location', 'southeast', 'FontSize', 12);
 grid on;
 set(gca, 'FontSize', 12);
 
 subplot(2,1,2);
 semilogy(s, error, 'r', 'LineWidth', 3);
 xlim([-1 1]);
-title('Aproximační chyba', 'FontSize', 16);
+title('Vektor chyby', 'FontSize', 16);
 xlabel('x', 'FontSize', 14);
-ylabel('||p(x) - sign(x)||_2', 'FontSize', 14);
+ylabel('|p(x) - f(x)|', 'FontSize', 14);
 grid on;
 set(gca, 'FontSize', 12);
 
@@ -59,8 +59,8 @@ end
 figure;
 semilogy(n_values, errors, 'b', 'LineWidth', 3);
 xlabel('Stupeň polynomu n', 'FontSize', 14);
-ylabel('||p(x) - sign(x)||_2', 'FontSize', 14);
-title('Závislost aproximační chyby na stupni polynomu', 'FontSize', 16);
+ylabel('||p(x) - f(x)||_2', 'FontSize', 14);
+title('Závislost chyby aproximace na stupni polynomu', 'FontSize', 16);
 grid on;
 set(gca, 'FontSize', 12);
 
