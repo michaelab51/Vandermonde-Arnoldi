@@ -29,8 +29,4 @@ title(['Aproximace funkce sin(x)cos(3x)'], 'FontSize', 16);
 xlabel('x', 'FontSize', 14);
 ylabel('p(x)', 'FontSize', 14);
 grid on;
-set(gca, 'FontSize', 12);
-xlabel('Stupeň polynomu n');
-ylabel('RMSE');
-title('Závislost RMSE na stupni polynomu');
-grid on;
+
